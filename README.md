@@ -29,5 +29,5 @@ Domain ------ Codomain
 
 A morphism that can be inverted, eg:
 
-a ------> b ------> a   `f :: a -> b`    `g :: b -> a`    `f o g = id`
+a ------> b ------> a   `f :: a -> b`    `g :: b -> a`    `f o g = id` `g o f = id`
     f          g  
