@@ -29,5 +29,19 @@ Domain ------ Codomain
 
 A morphism that can be inverted, eg:
 
-a ------> b ------> a   `f :: a -> b`    `g :: b -> a`    `f o g = id` `g o f = id`
+a ------> b ------> a   `f :: a -> b`    `g :: b -> a`    `f o g = `<code>id<sub>a</sub></code> `g o f = `<code>id<sub>b</sub></code>
     f          g  
+
+Injective: The elements from Codomain has at max a single corresponding element from the Domain. No shrinking colapsing.
+
+![image](https://github.com/user-attachments/assets/08990457-a035-461e-b0c8-23b96d77ae7b)
+
+Surjective: Every element from the Codomain has at least one element from the Domain.
+
+![image](https://github.com/user-attachments/assets/5f1a6a76-ac7c-4d76-a1b0-341134d18361)
+
+
+Bijective: Injective and Surjective at the same time, it means 1:1 relationship. (Isomorphism)
+
+![image](https://github.com/user-attachments/assets/efcc001f-8c61-441b-b99d-049621308c89)
+
