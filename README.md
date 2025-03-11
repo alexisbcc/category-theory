@@ -45,3 +45,7 @@ Bijective (Isomorphism): Injective and Surjective at the same time, it means 1:1
 
 ![image](https://github.com/user-attachments/assets/efcc001f-8c61-441b-b99d-049621308c89)
 
+## Void
+
+Unit type `() :: ()`
+
