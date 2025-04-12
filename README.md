@@ -19,7 +19,7 @@ Arrows(Morphism): is a path from an object `a` to another `b`. Where objects are
 a ------> b
     f
 
-### Functions  
+### Functions
 
 Mathematical function that for an element of the domain only corresponds a single element of the codomain, but for a codomain element there are multiple correponding elements in the domain.
 
@@ -30,7 +30,7 @@ Domain ------ Codomain
 A morphism that can be inverted, eg:
 
 a ------> b ------> a   `f :: a -> b`    `g :: b -> a`    `f o g = `<code>id<sub>a</sub></code> `g o f = `<code>id<sub>b</sub></code>
-    f          g  
+    f          g
 
 Injective (Monomorphism): The elements from Codomain has at max a single image (`f`) element from the Domain. No shrinking colapsing.
 
@@ -49,3 +49,11 @@ Bijective (Isomorphism): Injective and Surjective at the same time, it means 1:1
 
 Unit type `() :: ()`
 
+`unit :: a -> ()`
+
+## Categories
+
+Number of elements (nodes):
+
+- 0 -> empty Cathegory
+- 1 -> Single Element with id function
