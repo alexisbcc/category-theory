@@ -19,13 +19,13 @@ Arrows(Morphism): is a path from an object `a` to another `b`. Where objects are
 a ------> b
     f
 
-### Functions
+## Functions
 
 Mathematical function that for an element of the domain only corresponds a single element of the codomain, but for a codomain element there are multiple correponding elements in the domain.
 
 Domain ------ Codomain
 
-#### Isomorphism
+### Isomorphism
 
 A morphism that can be inverted, eg:
 
@@ -55,5 +55,36 @@ Unit type `() :: ()`
 
 Number of elements (nodes):
 
-- 0 -> empty Cathegory
+- 0 -> empty Category
 - 1 -> Single Element with id function
+
+### Pre-Orders
+
+Arrows are not "functions"
+
+Composition
+
+- `>= :: a >= b`
+- `a >= b >= c -> a >= c`
+
+Identity
+
+- `a >= a`
+- `a <= a`
+
+### Hom-set
+
+Is a set of arrows
+
+C(a, b), C(b, c)
+
+### Partial Orders
+
+Similar to orders but no loops, e.g. no (`a -> b , b -> a`)
+
+## Monoid
+
+- Composition
+- Identity
+
+## Kleisli category
