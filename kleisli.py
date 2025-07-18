@@ -1,5 +1,6 @@
-# Kleisli implementation
+# Kleisli category example
 
+# Logger implementation
 def upper_case(the_word: str) -> tuple[str, str]:
     return (the_word.upper(), "upper_case")
 

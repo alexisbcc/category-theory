@@ -64,13 +64,17 @@ Arrows are not "functions"
 
 Composition
 
-- `>= :: a >= b`
-- `a >= b >= c -> a >= c`
+```Haskell
+>= :: a >= b
+a >= b >= c -> a >= c
+```
 
 Identity
 
-- `a >= a`
-- `a <= a`
+```Haskell
+a >= a
+a <= a
+```
 
 ### Hom-set
 
@@ -84,7 +88,40 @@ Similar to orders but no loops, e.g. no (`a -> b , b -> a`)
 
 ## Monoid
 
+A monoid should satisfy the two properties:
+
 - Composition
 - Identity
 
 ## Kleisli category
+
+```mermaid
+  graph TD;
+    A(["a"]) --> B(["b"]);
+    A(["a"]) --> C(["m a"]);
+    B(["b"]) --> D(["c"]);
+    B(["b"]) --> E(["m b"]);
+```
+
+## Terminal Objects
+
+All categories end in the terminal object `()`
+
+```Haskell
+a -> ()
+b -> ()
+```
+
+```
+forall a => f :: a -> () & g :: a -> ()
+
+then >> f = g
+```
+
+## Initial Object
+
+```
+Void
+```
+
+## Products
