@@ -126,6 +126,9 @@ then >> f = g
 Is the initial point to many different ones.
 
 ```mermaid
+---
+title: Initial Object
+---
   graph TD;
     A(["a"]) --> B(["b"]);
     A(["a"]) --> C(["c"]);
@@ -155,8 +158,7 @@ Product is similar to vectorial projections:
 
 ```mermaid
 ---
-config:
-  theme: redux
+title: Products
 ---
 flowchart TD
     CP(["c'"]) -- P' --> A(["a"])
@@ -177,8 +179,7 @@ In haskell
 
 ```mermaid
 ---
-config:
-  theme: Products
+title: Products
 ---
 flowchart TD
     CP(["c'"]) -- P' --> A(["Int"])
@@ -199,7 +200,7 @@ Bad problems:
 ```Haskell
   -- Pojection ==> (Int, Bool)
 
-  -- P' can be anything but should return Int, this is bad becasue we lose information
+  -- P' can be anything but should return Int, this is bad because we lose information
   P' :: (Int, Int, Bool) -> Int
   P' (x, _, _) = x
 
@@ -218,8 +219,7 @@ Instead of projections we have injections:
 
 ```mermaid
 ---
-config:
-  theme: redux
+title: Coproducts
 ---
 flowchart TD
     C(["c"]) -. m .-> D@{ label: "c'" }
