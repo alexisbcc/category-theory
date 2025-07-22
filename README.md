@@ -96,6 +96,9 @@ A monoid should satisfy the two properties:
 ## Kleisli category
 
 ```mermaid
+---
+title: Kleisli Category
+---
   graph TD;
     A(["a"]) --> B(["b"]);
     A(["a"]) --> C(["m a"]);
@@ -120,8 +123,93 @@ then >> f = g
 
 ## Initial Object
 
-```
-Void
+Is the initial point to many different ones.
+
+```mermaid
+  graph TD;
+    A(["a"]) --> B(["b"]);
+    A(["a"]) --> C(["c"]);
+    A(["a"]) --> D(["d"]);
 ```
 
+## Universal construction
+
 ## Products
+
+Product is similar to vectorial projections:
+
+```haskell
+  -- for an object c
+  p :: c -> a
+  q :: c -> b
+
+  -- and there is a pretender c'
+  p' :: c' -> a
+  q' :: c' -> b
+
+  -- with a unique morphism m
+  m :: c' -> c
+  p' :: p o m
+  q' :: q o m
+```
+
+```mermaid
+---
+config:
+  theme: Products
+---
+flowchart TD
+    CP(["c"]) -- P' --> A(["a"])
+    C(["c"]) -- Q --> B(["b"])
+    CP -- Q' --> B
+    C -- P --> A
+    CP -. m .-> C
+```
+
+This implies that:
+
+```javascript
+P o m = P'
+Q o m = Q'
+```
+
+In haskell
+
+```mermaid
+---
+config:
+  theme: Products
+---
+flowchart TD
+    CP(["c"]) -- P' --> A(["Int"])
+    C(["c"]) -- snd --> B(["Bool"])
+    CP -- Q' --> B
+    C -- fst --> A
+    CP -. m .-> C
+```
+
+```Haskell
+  Pair :: (a, b)
+  fst (x, _) = x
+  snd (_, y) = y
+```
+
+Bad problems:
+
+```Haskell
+  -- Pojection ==> (Int, Bool)
+
+  -- P' can be anything but should return Int, this is bad becasue we lose information
+  P' :: (Int, Int, Bool) -> Int
+  P' (x, _, _) = x
+
+  -- Q' also lose information
+  Q' :: (Int, Int, Bool) -> Bool
+  Q' (_, _, b) = b
+
+  -- m should transform c' to c
+  m :: (Int, Int, Bool) -> (Int, Bool)
+  m (x, _, b) = (x, b)
+```
+
+## Coproducts
