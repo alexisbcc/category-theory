@@ -156,10 +156,10 @@ Product is similar to vectorial projections:
 ```mermaid
 ---
 config:
-  theme: Products
+  theme: redux
 ---
 flowchart TD
-    CP(["c"]) -- P' --> A(["a"])
+    CP(["c'"]) -- P' --> A(["a"])
     C(["c"]) -- Q --> B(["b"])
     CP -- Q' --> B
     C -- P --> A
@@ -181,7 +181,7 @@ config:
   theme: Products
 ---
 flowchart TD
-    CP(["c"]) -- P' --> A(["Int"])
+    CP(["c'"]) -- P' --> A(["Int"])
     C(["c"]) -- snd --> B(["Bool"])
     CP -- Q' --> B
     C -- fst --> A
@@ -213,3 +213,27 @@ Bad problems:
 ```
 
 ## Coproducts
+
+Instead of projections we have injections:
+
+```mermaid
+---
+config:
+  theme: redux
+---
+flowchart TD
+    C(["c"]) -. m .-> D@{ label: "c'" }
+    A(["a"]) -- i' --> D
+    A -- i --> C
+    B(["b"]) -- j --> C
+    B -- j' --> D
+    D@{ shape: stadium}
+
+```
+
+Thus:
+
+```Haskell
+  i' = m o i
+  j' = m o j
+```
