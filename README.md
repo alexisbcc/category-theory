@@ -215,7 +215,7 @@ Bad problems:
 
 ## Coproducts
 
-Instead of projections we have injections:
+Instead of projections we have injections, thus sum of two types that can be one or another but not both:
 
 ```mermaid
 ---
@@ -236,4 +236,14 @@ Thus:
 ```Haskell
   i' = m o i
   j' = m o j
+
+  -- Either (sum type)
+  data Either a b = Left a | Right b
+
+  -- x :: Either Int Bool
+  f :: Either Int Bool -> Bool
+  f Left i = i > o
+  f Right b = b
 ```
+
+## Algebraic data types
