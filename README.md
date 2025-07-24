@@ -90,8 +90,17 @@ Similar to orders but no loops, e.g. no (`a -> b , b -> a`)
 
 A monoid should satisfy the two properties:
 
-- Composition
-- Identity
+- Asociativity: (a * b) * c = a * (b * c)
+- Composition: Multiple arrows can be composed
+- Identity: Has the id arrow
+- Unit: For all e such as a binary operator `*` we have `e * a = a`
+
+String concatenation is a Monoid:
+
+```Haskell
+("a" ++ "b") ++ "c" = "a" ++ ("b" ++ "c")
+"a" ++ "" = "a"
+```
 
 ## Kleisli category
 
@@ -247,3 +256,45 @@ Thus:
 ```
 
 ## Algebraic data types
+
+```Haskell
+-- It's the same information with a different arrangement
+-- A function can take (a, b) but not (b, a) but we can create a morphism to transform it
+
+-- Isomorphism
+swap :: (a, b) -> (b, a)
+swap p = (snd p, fst p)
+
+-- ((a, b), c) ~ (a, (b, c))
+asoc ((a, b), c) = (a, (b, c))
+
+-- It's isomorphic with a
+-- (a, ()) ~ a
+
+-- From algebra (a * b) * c = a * (b * c)
+
+-- Either a Void ~ a
+-- a + 0 = a
+
+-- From algebra a * 0 = 0
+-- You can't construct (a, Void) ~ Void
+
+-- a * (b + c) = a * b + a * c (Multiplication and Addition)
+-- (a, Either b c) ~ Either (a, b) (a, c)
+```
+
+Equation to solve:
+
+```Haskell
+-- l(a) = 1 + a * l(a)
+-- l(a) - a * l(a) = 1
+-- l(a)(1 - a) = 1
+-- l(a) = 1/(1 - a)
+-- l(a) = Sum (n=0) to Inf :: a^n = 1 + a + a*a + a*a*a ...
+data List a = Nil | Const a (List a)
+
+-- l(a) = 1 + a * (1 + a * l(a))
+-- l(a) = 1 + a + a * a (1 + a * l(a))
+```
+
+## Functors
