@@ -237,7 +237,6 @@ flowchart TD
     B(["b"]) -- j --> C
     B -- j' --> D
     D@{ shape: stadium}
-
 ```
 
 Thus:
@@ -298,3 +297,92 @@ data List a = Nil | Const a (List a)
 ```
 
 ## Functors
+
+It's a mapping between two categories.
+
+It's something that preserves structure.
+
+Whenever objects are conected in the source cathegory, they are always conected in the Functor category, we cannot destroy connections.
+
+```mermaid
+---
+title: Category
+---
+flowchart TD
+    A(["a"]) -- f --> B(["b"])
+    A -- h --> C(["c"])
+    B -- g --> C
+```
+
+```mermaid
+---
+title: Functor
+---
+flowchart TD
+    A(["Fa"]) -- Ff --> B(["Fb"])
+    A -- Fh --> C(["Fc"])
+    B -- Fg --> C
+```
+
+```Haskell
+  h = g . f
+  -- And the image under F, preservation of structure is the property of:
+  F (g . f) = Fh = Fg . Ff
+
+  -- Also the identity functions
+  F ida = idF a
+```
+
+Faithful functor is injective on hom-sets
+Ful functor is surjective on hom-sets
+
+### Constant functor
+
+Collapses every object in a category to a single constan c
+
+```mermaid
+---
+title: Constant Functor
+---
+flowchart TD
+  A(["a"]) --> C(["c"])
+  B(["b"]) --> C(["c"])
+  D(["d"]) --> C(["c"])
+  E(["e"]) --> C(["c"])
+```
+
+### Endofuctor
+
+It maps inside the same category.
+
+In programming objects are types and morphism are functions.
+
+The type constructor is a mpaping of types
+
+### The Maybe functor
+
+```Haskell
+  -- Object mapping
+  data Maybe a = Nothing | Just a
+
+  -- Morphism mapping
+  fmap :: (a -> b) -> (Maybe a -> Maybe b)
+  fmap f Nothing = Nothing
+  fmap f (Just x) = Just (f x)
+
+  -- Fuctor preserves composition and identity
+  -- The Haskell compiler cannot check Functor conditions
+
+  -- Identity
+  -- fmap id = id
+  -- fmap ida = idMaybe a
+
+  -- Composition
+  -- fmap (g . f) = fmap g . fmap f
+  -- id x = x
+  -- fmap id Nothing = Nothing = id Nothing
+  -- fmap id (Just x) = Just (id x) = Just x
+  -- id (Just x) = Just x
+
+  -- Theorem for free wihen using polymorphism
+```
