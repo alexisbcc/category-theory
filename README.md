@@ -1,4 +1,5 @@
 # category-theory
+
 ## Category
 
 A category has Objects and arrows that go from one object to another.
@@ -9,15 +10,15 @@ A category has Objects and arrows that go from one object to another.
 
 - Composition: `(h o g) o f = h o (g o f)`
 
-a ------> b -----> c -----> d        a ------------------------> d
-    f         g        h                       h o g o f
+a ------> b -----> c -----> d a ------------------------> d
+f g h h o g o f
 
 - Identity: An object has a morphism that maps to itself
 
 Arrows(Morphism): is a path from an object `a` to another `b`. Where objects are names for end of arrows.
 
 a ------> b
-    f
+f
 
 ## Functions
 
@@ -29,8 +30,8 @@ Domain ------ Codomain
 
 A morphism that can be inverted, eg:
 
-a ------> b ------> a   `f :: a -> b`    `g :: b -> a`    `f o g = `<code>id<sub>a</sub></code> `g o f = `<code>id<sub>b</sub></code>
-    f          g
+a ------> b ------> a `f :: a -> b` `g :: b -> a` `f o g = `<code>id<sub>a</sub></code> `g o f = `<code>id<sub>b</sub></code>
+f g
 
 Injective (Monomorphism): The elements from Codomain has at max a single image (`f`) element from the Domain. No shrinking colapsing.
 
@@ -39,7 +40,6 @@ Injective (Monomorphism): The elements from Codomain has at max a single image (
 Surjective (Epimorphism): Every element from the Codomain has at least one image from the Domain.
 
 ![image](https://github.com/user-attachments/assets/5f1a6a76-ac7c-4d76-a1b0-341134d18361)
-
 
 Bijective (Isomorphism): Injective and Surjective at the same time, it means 1:1 relationship.
 
@@ -90,7 +90,7 @@ Similar to orders but no loops, e.g. no (`a -> b , b -> a`)
 
 A monoid should satisfy the two properties:
 
-- Asociativity: (a * b) * c = a * (b * c)
+- Asociativity: (a _ b) _ c = a _ (b _ c)
 - Composition: Multiple arrows can be composed
 - Identity: Has the id arrow
 - Unit: For all e such as a binary operator `*` we have `e * a = a`
@@ -385,4 +385,33 @@ The type constructor is a mpaping of types
   -- id (Just x) = Just x
 
   -- Theorem for free wihen using polymorphism
+```
+
+### Class type
+
+```Haskell
+class Eq a where
+  (==) :: a -> a -> Bool
+
+-- f is a type constructor
+class Functor f where
+  fmap :: (a -> b) -> (fa -> fb)
+
+data List a = Nil | Cons a (List a)
+
+instance Functor List where
+  fmap f Nil = Nil
+  fmap f (Cons h t) = Cons (f h) (fmap f t)
+```
+
+### Reader functor
+
+```Haskell
+type Reade r a = r -> a
+
+-- infx (->) r a
+-- Reader (r -> a), r is fixed to a type (eg. Bool -> a)
+
+fmap :: (a -> b) -> (r -> a) -> (r -> b)
+
 ```
