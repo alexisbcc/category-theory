@@ -407,11 +407,21 @@ instance Functor List where
 ### Reader functor
 
 ```Haskell
+-- a -> b <---> (->) a b
+
+-- A type cobnstructor is
+-- (->) a
+
 type Reade r a = r -> a
 
 -- infx (->) r a
 -- Reader (r -> a), r is fixed to a type (eg. Bool -> a)
 
 fmap :: (a -> b) -> (r -> a) -> (r -> b)
-
+fmap f g = f . g = (.) f g
+fmap = (.)
 ```
+
+### Functors as containers
+
+List of a is a containers, Tree also contains values.
