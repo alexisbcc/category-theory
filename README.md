@@ -409,10 +409,10 @@ instance Functor List where
 ```Haskell
 -- a -> b <---> (->) a b
 
--- A type cobnstructor is
+-- A type constructor is
 -- (->) a
 
-type Reade r a = r -> a
+type Reader r a = r -> a
 
 -- infx (->) r a
 -- Reader (r -> a), r is fixed to a type (eg. Bool -> a)
@@ -425,3 +425,53 @@ fmap = (.)
 ### Functors as containers
 
 List of a is a containers, Tree also contains values.
+
+### Category of categories (Cat)
+
+Fuctor as morphism and categories as objects
+
+### Combining functors
+
+```Haskell
+tail :: [a] -> [a]
+
+safeTail :: [a] -> Maybe [a]
+safeTail [] = Nothing
+safeTail (x:xs) = Just xs
+
+mis :: Maybe [Int]
+sq :: Int-> Int
+
+-- fmap (fmap sq) mis ==> (fmap . fmap) sq mis
+```
+
+### Products
+
+```mermaid
+---
+config:
+  theme: dark
+title: Fixed (e)
+---
+flowchart LR
+    B(["b"]) --> D(["(e, b)"])
+    A(["a"]) --> C(["(e, a)"])
+    A -- f --> B
+    C -- fmap f --> D
+```
+
+```Haskell
+-- (a, b) --> (,) a b
+-- fmap f (e, x) = (e, f x)
+```
+
+### Bifunctor
+
+```Haskell
+-- Bifunctor
+
+class Bifunctor f where
+  bimap :: (a -> a') -> (b -> b') -> (f a b -> f a' b')
+
+-- Either a b is also a bifunctor
+```
