@@ -475,3 +475,62 @@ class Bifunctor f where
 
 -- Either a b is also a bifunctor
 ```
+
+### Monoidal categories
+
+Unit multiplication
+
+```mermaid
+---
+config:
+  theme: dark
+  layout: dagre
+  look: neo
+title: Fixed
+---
+flowchart TB
+    B(["b"]) -. P .-> A(["a"])
+    B -- P --> E(["a"])
+    A --> E
+    A -. unit_a .-> C(["()"])
+    B -. unit_b .-> C
+
+```
+
+Tensor product (X) 1
+
+#### Cosntant functor
+
+```Haskell
+{#LANGUAGE DeriveFunctor#}
+
+-- Black hole, collapses
+Data Const c a = Const c
+
+instance Functor (Const c) where
+  fmap :: (a -> b) -> Const c a -> Const c b
+  fmap f (Const c) = Const c
+
+data Identity a = Identity a
+instance Functor Identity where
+  fmap f (Indetity x) = Idnetity (f x)
+
+data Maybe a = Nothing | Just a
+     Either () (Identity a)
+     Either (Const ( a)) (Identity a)
+```
+
+Every ADT can be derived into a functor, in Haskell this can be done with `DeriveFunctor` extension.
+
+```Haskell
+-- (->) a b = a -> b
+newtype Reader c a = Reader (c -> a)
+fmap = (.)
+
+data Op c a = Op (a -> c)
+fmap :: (a -> b) -> Op c a -> Op c b
+fmap :: (a -> b) -> (a -> c) -> (b -> c)
+
+-- C_op -> D Oposite category
+
+```
