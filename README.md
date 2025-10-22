@@ -148,7 +148,7 @@ title: Initial Object
 
 ## Products
 
-Product is similar to vectorial projections:
+A product is a pair of objects that have projections that maps to the both elements of the product.
 
 ```haskell
   -- for an object c
