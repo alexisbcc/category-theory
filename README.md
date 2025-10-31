@@ -88,12 +88,12 @@ Similar to orders but no loops, e.g. no (`a -> b , b -> a`)
 
 ## Monoid
 
-A monoid should satisfy the two properties:
+A monoid should satisfy the following properties:
 
 - Asociativity: (a _ b) _ c = a _ (b _ c)
 - Composition: Multiple arrows can be composed
 - Identity: Has the id arrow
-- Unit: For all e such as a binary operator `*` we have `e * a = a`
+- Unit: For all `e` such as a binary operator `*` we have `e * a = a`
 
 String concatenation is a Monoid:
 
@@ -430,7 +430,7 @@ List of a is a containers, Tree also contains values.
 
 Fuctor as morphism and categories as objects
 
-### Combining functors
+### Composition of functors
 
 ```Haskell
 tail :: [a] -> [a]
@@ -494,12 +494,11 @@ flowchart TB
     A --> E
     A -. unit_a .-> C(["()"])
     B -. unit_b .-> C
-
 ```
 
 Tensor product (X) 1
 
-#### Cosntant functor
+#### Constant functor
 
 ```Haskell
 {#LANGUAGE DeriveFunctor#}
@@ -513,7 +512,7 @@ instance Functor (Const c) where
 
 data Identity a = Identity a
 instance Functor Identity where
-  fmap f (Indetity x) = Idnetity (f x)
+  fmap f (Indetity a) = Idnetity (f a)
 
 data Maybe a = Nothing | Just a
      Either () (Identity a)
@@ -533,4 +532,9 @@ fmap :: (a -> b) -> (a -> c) -> (b -> c)
 
 -- C_op -> D Oposite category
 
+class Contravariant f where
+    contramap :: (b -> a) -> (f a -> f b)
+
+class Profunctor p where
+    dimap :: (a' -> a) -> (b -> b') -> (p a b -> p a' b')
 ```
