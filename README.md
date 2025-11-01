@@ -538,3 +538,29 @@ class Contravariant f where
 class Profunctor p where
     dimap :: (a' -> a) -> (b -> b') -> (p a b -> p a' b')
 ```
+
+#### Function type - Exponential
+
+$$
+a^{b+c} = a^b x a^c \\
+
+Either b c -> a \\
+Implement a pair of functions for left or right \\
+(b -> a , c -> a) \\
+
+a^{b^c} = ^{bxc} \\
+c -> (b -> a) ~ (b, c) -> a \\
+
+(a x b)^c = a^c x b^c \\
+c -> (a, b) ~ (c -> a, c -> b)
+$$
+
+```Haskell
+-- g' = g o (h x id)
+-- Curring
+curry :: ((a, b) -> c) -> (a -> (b -> c))
+curry f = \a -> \b -> f (a, b)
+
+uncurry :: (a -> (b -> c)) -> ((a, b) -> c)
+uncurry f = \a b -> f a b
+```
