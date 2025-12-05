@@ -2,7 +2,7 @@
 
 ## Category
 
-A category has Objects and arrows that go from one object to another.
+A category has Objects and arrows (morphisms) that go from one object to another.
 
 ### Properties of a category
 
@@ -95,12 +95,16 @@ A monoid should satisfy the following properties:
 - Identity: Has the id arrow
 - Unit: For all `e` such as a binary operator `*` we have `e * a = a`
 
-String concatenation is a Monoid:
+String is a monoid:
 
 ```Haskell
 ("a" ++ "b") ++ "c" = "a" ++ ("b" ++ "c")
 "a" ++ "" = "a"
 ```
+
+### From the Category Theory perspective
+
+A monoid is a single object category, with a homset `M(m, m)` and the binary operator in this case is the composition of arrows from the homset, this is the monoidal product, e.g. if you have two elements from the homset `f` and  `g` their product will be `f . g`.
 
 ## Kleisli category
 
