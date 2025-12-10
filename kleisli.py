@@ -4,18 +4,26 @@
 def upper_case(the_word: str) -> tuple[str, str]:
     return (the_word.upper(), "upper_case")
 
-def lower_case(the_word):
-    return (the_word.lower(), "lower_case")
+
+def removeprefix(the_word: str) -> tuple[str, str]:
+    return (the_word.removeprefix("H"), "removeprefix")
+
 
 def compose(action, action2):
     def with_logging(x):
         pair1 = action(x)
         pair2 = action2(pair1[0])
-        return (pair2[0],pair1[1] + pair2[1])
+        return (pair2[0], pair1[1] + ", " + pair2[1])
+
     return with_logging
 
+
 def main():
-    print("hello")
+    withLogging = compose(upper_case, removeprefix)
+    res = withLogging("hello kleisli")
+    print(res)
+
     return 0
+
 
 main()

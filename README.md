@@ -118,6 +118,9 @@ title: Kleisli Category
     B(["b"]) --> D(["c"]);
     B(["b"]) --> E(["m b"]);
 ```
+## Cartesian product of sets
+
+A(1, 2) & B(a, b) => AxB = A^2 = {(1, a), (1, b), (2, a), (2, b)}
 
 ## Terminal Objects
 
@@ -129,14 +132,14 @@ b -> ()
 ```
 
 ```
-forall a => f :: a -> () & g :: a -> ()
+For every object `a` there is a function `f` to the terminal object `()`
 
-then >> f = g
+forall a => f :: a -> () & g :: a -> (), then >> f = g, this means that f is unique
 ```
 
 ## Initial Object
 
-Is the initial point to many different ones.
+Is the initial object that has a unique arrow to any other object. (Void)
 
 ```mermaid
 ---
@@ -149,6 +152,9 @@ title: Initial Object
 ```
 
 ## Universal construction
+
+- Pattern: single object
+- Ranking: a is better than b if there is a unique arrow from b to a b -> a
 
 ## Products
 
