@@ -161,7 +161,7 @@ title: Initial Object
 A product is a pair of objects that have projections that maps to the both elements of the product.
 
 ```haskell
-  -- for an object c
+  -- The product "c" of a and b is defined as
   p :: c -> a
   q :: c -> b
 
@@ -171,6 +171,8 @@ A product is a pair of objects that have projections that maps to the both eleme
 
   -- with a unique morphism m
   m :: c' -> c
+  
+  -- That factorizes the projections
   p' :: p o m
   q' :: q o m
 ```
