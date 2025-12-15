@@ -236,7 +236,23 @@ Bad problems:
 
 ## Coproducts
 
-Instead of projections we have injections, thus sum of two types that can be one or another but not both:
+### Opposite category
+
+Is the same category but with inversed morphisms.
+
+The duality of product is the coproduct, instead of projections we have injections, thus sum of two types that can be one or another but not both.
+
+The coproduct of two objects `a` and `b` is the object `c` that has two injections such tht for anyt other object `c'` equiped with two injecctions there is a unique morphism `m` from `c` to `c'` that factorizes thiose injections.
+
+```Haskell
+  i :: a -> c
+  j :: b -> c
+  
+  m :: c -> c'
+
+  i' = m o i
+  j' = m o j
+```
 
 ```mermaid
 ---
@@ -314,7 +330,7 @@ It's a mapping between two categories.
 
 It's something that preserves structure.
 
-Whenever objects are conected in the source cathegory, they are always conected in the Functor category, we cannot destroy connections.
+Whenever objects are connected in the source category, they are always conected in the Functor category, we cannot destroy connections.
 
 ```mermaid
 ---
@@ -436,11 +452,11 @@ fmap = (.)
 
 ### Functors as containers
 
-List of a is a containers, Tree also contains values.
+List of a is a container, Tree also contains values.
 
 ### Category of categories (Cat)
 
-Fuctor as morphism and categories as objects
+Functor as morphism and categories as objects
 
 ### Composition of functors
 
