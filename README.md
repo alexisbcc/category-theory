@@ -473,7 +473,7 @@ sq :: Int-> Int
 -- fmap (fmap sq) mis ==> (fmap . fmap) sq mis
 ```
 
-### Products
+### Products Functoriality
 
 ```mermaid
 ---
@@ -493,7 +493,7 @@ flowchart LR
 -- fmap f (e, x) = (e, f x)
 ```
 
-### Bifunctor
+### Product of two categories
 
 ```Haskell
 -- Bifunctor
@@ -526,7 +526,7 @@ flowchart TB
 
 Tensor product (X) 1
 
-#### Constant functor
+#### Const functor
 
 ```Haskell
 {#LANGUAGE DeriveFunctor#}
@@ -537,34 +537,47 @@ Data Const c a = Const c
 instance Functor (Const c) where
   fmap :: (a -> b) -> Const c a -> Const c b
   fmap f (Const c) = Const c
+```
 
+#### Const functor
+
+```Haskell
 data Identity a = Identity a
 instance Functor Identity where
   fmap f (Indetity a) = Idnetity (f a)
 
 data Maybe a = Nothing | Just a
      Either () (Identity a)
-     Either (Const ( a)) (Identity a)
+     Either (Const () a) (Identity a)
+     Either (Const () a) (Const () a)
+    deriving Functor
 ```
 
 Every ADT can be derived into a functor, in Haskell this can be done with `DeriveFunctor` extension.
 
+#### Reader Functor
 ```Haskell
 -- (->) a b = a -> b
 newtype Reader c a = Reader (c -> a)
 fmap = (.)
 
+-- What if we fix the second argument of the Reader
 data Op c a = Op (a -> c)
 fmap :: (a -> b) -> Op c a -> Op c b
 fmap :: (a -> b) -> (a -> c) -> (b -> c)
+-- Technically there is no way to implement the previus statement
 
 -- C_op -> D Oposite category
+-- Maps ojects to boject and morphism are inverted a -> b should be b -> a that is contravariant
 
 class Contravariant f where
     contramap :: (b -> a) -> (f a -> f b)
 
+-- Now acting on both (->) a b 
+-- C^op x C -> C
 class Profunctor p where
-    dimap :: (a' -> a) -> (b -> b') -> (p a b -> p a' b')
+    dimap :: (a' -> a) -> (b -> b') -> p a b -> p a' b'
+                 f            g          h       g.h.f
 ```
 
 #### Function type - Exponential
